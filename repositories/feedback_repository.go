@@ -1,8 +1,12 @@
 package repositories
 
-import "gorm.io/gorm"
+import (
+	"github.com/kryast/crud-11.git/models"
+	"gorm.io/gorm"
+)
 
 type FeedbackRepository interface {
+	Create(feedback *models.Feedback) error
 }
 
 type feedbackRepository struct {
@@ -11,4 +15,8 @@ type feedbackRepository struct {
 
 func NewFeedbackRepository(db *gorm.DB) FeedbackRepository {
 	return &feedbackRepository{db}
+}
+
+func (fr *feedbackRepository) Create(feedback *models.Feedback) error {
+	return fr.db.Create(feedback).Error
 }

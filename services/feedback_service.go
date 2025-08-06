@@ -1,8 +1,12 @@
 package services
 
-import "github.com/kryast/crud-11.git/repositories"
+import (
+	"github.com/kryast/crud-11.git/models"
+	"github.com/kryast/crud-11.git/repositories"
+)
 
 type FeedbackService interface {
+	Create(feedback *models.Feedback) error
 }
 
 type feedbackService struct {
@@ -11,4 +15,8 @@ type feedbackService struct {
 
 func NewFeedbackService(repo repositories.FeedbackRepository) FeedbackService {
 	return &feedbackService{repo}
+}
+
+func (fs *feedbackService) Create(feedback *models.Feedback) error {
+	return fs.repo.Create(feedback)
 }
