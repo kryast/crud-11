@@ -1,7 +1,7 @@
 CRUD ke-11
 
 POST
-curl -X POST http://localhost:8080/feedbacks \
+curl -X POST http://localhost:8080/feedback \
 -H "Content-Type: application/json" \
 -d '{
   "customer_name": "Ahmad Syarifuddin",

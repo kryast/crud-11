@@ -8,7 +8,7 @@ import (
 	"github.com/kryast/crud-11.git/router"
 )
 
-func Main() {
+func main() {
 	db, err := database.InitDB()
 	if err != nil {
 		log.Fatal("Failed to Connect Database", err)
