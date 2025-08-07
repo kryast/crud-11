@@ -16,6 +16,7 @@ func SetupRouter(db *gorm.DB) *gin.Engine {
 	h := handlers.NewFeedbackService(svc)
 
 	r.POST("/feedback", h.Create)
+	r.GET("/feedback", h.GetAll)
 
 	return r
 }

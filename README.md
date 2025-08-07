@@ -9,3 +9,7 @@ curl -X POST http://localhost:8080/feedback \
   "message": "Pelayanan sangat baik, saya puas.",
   "rating": 5
 }'
+
+
+GET
+curl http://localhost:8080/feedback

@@ -31,3 +31,14 @@ func (fh *FeedbackHandler) Create(c *gin.Context) {
 
 	c.JSON(http.StatusOK, feedback)
 }
+
+func (fh *FeedbackHandler) GetAll(c *gin.Context) {
+	feedback, err := fh.service.GetAll()
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"Error": err})
+		return
+	}
+
+	c.JSON(http.StatusOK, feedback)
+
+}

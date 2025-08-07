@@ -7,6 +7,7 @@ import (
 
 type FeedbackService interface {
 	Create(feedback *models.Feedback) error
+	GetAll() ([]models.Feedback, error)
 }
 
 type feedbackService struct {
@@ -19,4 +20,8 @@ func NewFeedbackService(repo repositories.FeedbackRepository) FeedbackService {
 
 func (fs *feedbackService) Create(feedback *models.Feedback) error {
 	return fs.repo.Create(feedback)
+}
+
+func (fs *feedbackService) GetAll() ([]models.Feedback, error) {
+	return fs.repo.GetAll()
 }

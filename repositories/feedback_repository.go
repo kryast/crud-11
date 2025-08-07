@@ -7,6 +7,7 @@ import (
 
 type FeedbackRepository interface {
 	Create(feedback *models.Feedback) error
+	GetAll() ([]models.Feedback, error)
 }
 
 type feedbackRepository struct {
@@ -19,4 +20,11 @@ func NewFeedbackRepository(db *gorm.DB) FeedbackRepository {
 
 func (fr *feedbackRepository) Create(feedback *models.Feedback) error {
 	return fr.db.Create(feedback).Error
+}
+
+func (fr *feedbackRepository) GetAll() ([]models.Feedback, error) {
+	var feedbacks []models.Feedback
+	err := fr.db.Find(&feedbacks).Error
+
+	return feedbacks, err
 }
