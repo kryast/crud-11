@@ -18,6 +18,7 @@ func SetupRouter(db *gorm.DB) *gin.Engine {
 	r.POST("/feedback", h.Create)
 	r.GET("/feedback", h.GetAll)
 	r.GET("/feedback/:id", h.GetByID)
+	r.PUT("/feedback/:id", h.Update)
 
 	return r
 }

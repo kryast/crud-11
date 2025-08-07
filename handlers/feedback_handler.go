@@ -54,3 +54,21 @@ func (fh *FeedbackHandler) GetByID(c *gin.Context) {
 	}
 	c.JSON(http.StatusOK, feedback)
 }
+
+func (fh *FeedbackHandler) Update(c *gin.Context) {
+	id, _ := strconv.Atoi(c.Param("id"))
+
+	var feedback models.Feedback
+	if err := c.ShouldBindJSON(&feedback); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"Error": err})
+		return
+	}
+
+	feedback.ID = uint(id)
+	if err := fh.service.Update(&feedback); err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"Error": "update failed"})
+		return
+	}
+
+	c.JSON(http.StatusOK, feedback)
+}
