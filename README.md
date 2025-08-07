@@ -13,3 +13,4 @@ curl -X POST http://localhost:8080/feedback \
 
 GET
 curl http://localhost:8080/feedback
+curl http://localhost:8080/feedback/1

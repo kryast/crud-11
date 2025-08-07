@@ -8,6 +8,7 @@ import (
 type FeedbackRepository interface {
 	Create(feedback *models.Feedback) error
 	GetAll() ([]models.Feedback, error)
+	GetByID(id uint) (*models.Feedback, error)
 }
 
 type feedbackRepository struct {
@@ -27,4 +28,11 @@ func (fr *feedbackRepository) GetAll() ([]models.Feedback, error) {
 	err := fr.db.Find(&feedbacks).Error
 
 	return feedbacks, err
+}
+
+func (fr *feedbackRepository) GetByID(id uint) (*models.Feedback, error) {
+	var feedback models.Feedback
+	err := fr.db.First(&feedback, id).Error
+
+	return &feedback, err
 }
