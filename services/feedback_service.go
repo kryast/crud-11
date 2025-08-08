@@ -10,6 +10,7 @@ type FeedbackService interface {
 	GetAll() ([]models.Feedback, error)
 	GetByID(id uint) (*models.Feedback, error)
 	Update(feedback *models.Feedback) error
+	Delete(id uint) error
 }
 
 type feedbackService struct {
@@ -34,4 +35,8 @@ func (fs *feedbackService) GetByID(id uint) (*models.Feedback, error) {
 
 func (fs *feedbackService) Update(feedback *models.Feedback) error {
 	return fs.repo.Update(feedback)
+}
+
+func (fs *feedbackService) Delete(id uint) error {
+	return fs.repo.Delete(id)
 }

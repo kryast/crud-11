@@ -10,6 +10,7 @@ type FeedbackRepository interface {
 	GetAll() ([]models.Feedback, error)
 	GetByID(id uint) (*models.Feedback, error)
 	Update(feedback *models.Feedback) error
+	Delete(id uint) error
 }
 
 type feedbackRepository struct {
@@ -41,4 +42,8 @@ func (fr *feedbackRepository) GetByID(id uint) (*models.Feedback, error) {
 func (fr *feedbackRepository) Update(feedback *models.Feedback) error {
 
 	return fr.db.Save(feedback).Error
+}
+
+func (fr *feedbackRepository) Delete(id uint) error {
+	return fr.db.Delete(&models.Feedback{}, id).Error
 }
